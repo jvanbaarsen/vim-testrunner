@@ -7,7 +7,7 @@ This is a lightweight RSpec runner for Vim and MacVim.
 Recommended installation with [vundle](https://github.com/gmarik/vundle):
 
 ```vim
-Bundle 'thoughtbot/vim-rspec'
+Bundle 'jvanbaarsen/vim-testrunner'
 ```
 
 If using zsh on OS X it may be necessary to move `/etc/zshenv` to `/etc/zshrc`.
@@ -23,36 +23,35 @@ Add your preferred key mappings to your `.vimrc` file.
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 ```
 
 ### Custom command
 
-Overwrite the `g:rspec_command` variable to execute a custom command.
+Overwrite the `g:test_command` variable to execute a custom command.
 
 Example:
 
 ```vim
-let g:rspec_command = "!rspec --drb {spec}"
+let g:test_command = "!rspec --drb {test}"
 ```
 
-This `g:rspec_command` variable can be used to support any number of test
+This `g:test_command` variable can be used to support any number of test
 runners or pre-loaders. For example, to use
 [Dispatch](https://github.com/tpope/vim-dispatch):
 
 ```vim
-let g:rspec_command = "Dispatch rspec {spec}"
+let g:test_command = "Dispatch rspec {test}"
 ```
 Or, [Dispatch](https://github.com/tpope/vim-dispatch) and
 [Zeus](https://github.com/burke/zeus) together:
 
 ```vim
-let g:rspec_command = "compiler rspec | set makeprg=zeus | Make rspec {spec}"
+let g:test_command = "compiler rspec | set makeprg=zeus | Make rspec {test}"
 ```
 
 ### Custom runners
 
-Overwrite the `g:rspec_runner` variable to set a custom launch script. At the
+Overwrite the `g:test_runner` variable to set a custom launch script. At the
 moment there are two MacVim-specific runners, i.e. `os_x_terminal` and
 `os_x_iterm`. The default is `os_x_terminal`, but you can set this to anything
 you want, provided you include the appropriate script inside the plugin's
@@ -60,29 +59,16 @@ you want, provided you include the appropriate script inside the plugin's
 
 #### iTerm instead of Terminal
 
-If you use iTerm, you can set `g:rspec_runner` to use the included iterm
+If you use iTerm, you can set `g:test_runner` to use the included iterm
 launching script. This will run the specs in the last session of the current
 terminal.
 
 ```vim
-let g:rspec_runner = "os_x_iterm"
+let g:test_runner = "os_x_iterm"
 ```
 
 Credits
 -------
 
-![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
+A super big thank you goes out to Thoughbot for creating the rspec.vim plugin, which i used as the base for this plugin.
 
-rspec.vim is maintained by [thoughtbot, inc](http://thoughtbot.com/community)
-and [contributors](https://github.com/thoughtbot/vim-rspec/graphs/contributors)
-like you. Thank you!
-
-It was strongly influenced by Gary Bernhardt's [Destroy All
-Software](https://www.destroyallsoftware.com/screencasts) screencasts.
-
-## License
-
-rspec.vim is copyright © 2014 thoughtbot. It is free software, and may be
-redistributed under the terms specified in the `LICENSE` file.
-
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.

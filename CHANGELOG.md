@@ -1,3 +1,4 @@
+* 2014-06-07 - Made it possible to use with minitest and spinach as well
 * 2013-05-03 - Removed explicit support for Dispatch because it introduces  a
   load order dependency. Set `g:rspec_command` in your .vimrc if you want to
   use Dispatch or any other test runner.
