@@ -1,4 +1,4 @@
-# rspec.vim
+# vim-testrunner
 
 This is a lightweight RSpec runner for Vim and MacVim.
 
