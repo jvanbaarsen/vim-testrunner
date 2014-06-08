@@ -50,9 +50,9 @@ function! SetLastTestCommand(test)
 endfunction
 
 function! RunTests(test)
-  if match(expand("%"), '\.feature$') != -1
+  if match(a:test, '\.feature$') != -1
     let l:test_runner = substitute(g:test_command, "{test_runner}", "spinach", "g")
-  elseif match(expand("%"), '_spec\.rb$') != -1
+  elseif match(a:test, '_spec\.rb') != -1
     let l:test_runner = substitute(g:test_command, "{test_runner}", "rspec", "g")
   else
     let l:test_runner = substitute(g:test_command, "{test_runner}", "ruby -Itest", "g")
