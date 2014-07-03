@@ -55,7 +55,14 @@ function! RunTests(test)
   elseif match(a:test, '_spec\.rb') != -1
     let l:test_runner = substitute(g:test_command, "{test_runner}", "rspec", "g")
   else
-    let l:test_runner = substitute(g:test_command, "{test_runner}", "ruby -Itest", "g")
+    " Check if we have a config/application.rb file, if so we are probably in
+    " a rails app. That means we can use rake test and make full use of
+    " spring. Otherwise fallback to plain old ruby -Itest
+    if filereadable("config/application.rb")
+      let l:test_runner = substitute(g:test_command, "{test_runner}", "rake test", "g")
+    else
+      let l:test_runner = substitute(g:test_command, "{test_runner}", "ruby -Itest", "g")
+    endif
   endif
   execute substitute(l:test_runner, "{test}", a:test, "g")
 endfunction
