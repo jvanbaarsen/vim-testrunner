@@ -59,7 +59,7 @@ function! RunTests(test)
     " a rails app. That means we can use rake test and make full use of
     " spring. Otherwise fallback to plain old ruby -Itest
     if filereadable("config/application.rb")
-      let l:test_runner = substitute(g:test_command, "{test_runner}", "bundle exec rake test", "g")
+      let l:test_runner = substitute(g:test_command, "{test_runner}", "bundle exec bin/rake test", "g")
     else
       let l:test_runner = substitute(g:test_command, "{test_runner}", "ruby -Itest", "g")
     endif
